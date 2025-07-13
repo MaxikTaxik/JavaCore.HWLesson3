@@ -15,4 +15,5 @@ public abstract class Animal {
 	abstract public boolean run(int obstanceSize);
 	abstract public boolean swim(int obstanceSize);
 	abstract public boolean jump(int obstanceSize);
+
 }

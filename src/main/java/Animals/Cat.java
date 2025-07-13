@@ -12,17 +12,13 @@ public class Cat extends Animal{
 		this.dataOfBirth = dateOfBirth;
 		Cat.id++;
 
-		Random random = new Random();
 
 		this.metersJumping = 1.5;
 		this.metersRunning = 500;
 		this.metersSwimming = 3;
-		this.metersJumping = metersJumping - (metersJumping * 0.25) +
-			(metersJumping * 1.25 - (metersJumping - (metersJumping * 0.25)));
-		this.metersRunning = metersRunning - (metersRunning * 0.25) +
-			(metersRunning * 1.25 - (metersRunning - (metersRunning * 0.25)));;
-		this.metersSwimming = metersSwimming - (metersSwimming * 0.25) +
-			(metersSwimming * 1.25 - (metersSwimming - (metersSwimming * 0.25)));  // Алогоритм разброса значений в 25%: min + (max - min) * random.
+		this.metersJumping = randomFn(1.5);
+		this.metersRunning = randomFn(500);
+		this.metersSwimming = randomFn(3);  // Алогоритм разброса значений в 25%: min + (max - min) * random.
 	}
 
 	public static int getId() {
@@ -31,27 +27,34 @@ public class Cat extends Animal{
 
 	public boolean run(int obstanceSize){
 		if (obstanceSize > metersRunning) {
-			System.out.println("The cat is running.");
+			System.out.println("The cat can't run.");
 			return false;
 		}
-		System.out.println("The cat can't run.");
+		System.out.println("The cat is running.");
 		return true;
 	}
 	public boolean swim(int obstanceSize){
 		if (obstanceSize > metersSwimming) {
-			System.out.println("The cat is swimming.");
+			System.out.println("The cat can't swim.");
 			return false;
 		}
-		System.out.println("The cat can't swim.");
+		System.out.println("The cat is swimming.");
 		return true;
 	}
 	public boolean jump(int obstanceSize){
 		if (obstanceSize > metersJumping) {
-			System.out.println("The cat is jumping.");
+			System.out.println("The cat can't jump.");
 			return false;
 		}
-		System.out.println("The cat can't jump.");
+		System.out.println("The cat is jumping.");
 		return true;
+	}
+
+	double randomFn(double metersObstance){
+		Random random = new Random();
+		metersObstance = metersObstance - (metersObstance * 0.25) +
+			(metersObstance * 1.25 - (metersObstance - (metersObstance * 0.25))) * random.nextDouble();
+		return metersObstance;
 	}
 }
 
