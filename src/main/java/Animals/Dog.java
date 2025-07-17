@@ -3,7 +3,7 @@ package Animals;
 import java.time.LocalDate;
 import java.util.Random;
 
-public class Dog extends Animal {
+public class Dog extends Animal implements RandomFn {
 	static private int id;
 
 	public Dog(String name, String color, LocalDate dateOfBirth){
@@ -14,12 +14,12 @@ public class Dog extends Animal {
 
 		Random random = new Random();
 
-		this.metersJumping = 2;
-		this.metersRunning = 2000;
-		this.metersSwimming = 10;
-		this.metersJumping = randomFn(2);
-		this.metersRunning = randomFn(2000);
-		this.metersSwimming = randomFn(10);  // Алогоритм разброса значений в 25%: min + (max - min) * random.
+		this.metersJumping = Obstance.METERS_JUMPING.getValues()[1];
+		this.metersRunning = Obstance.METERS_RUNNING.getValues()[1];
+		this.metersSwimming = Obstance.METERS_SWIMMING.getValues()[1];
+		this.metersJumping = randomFn(metersJumping);
+		this.metersRunning = randomFn(metersRunning);
+		this.metersSwimming = randomFn(metersSwimming);  // Алогоритм разброса значений в 25%: min + (max - min) * random.
 	}
 
 	public static int getId() {
@@ -50,12 +50,5 @@ public class Dog extends Animal {
 		}
 		System.out.println("The dog is jumping.");
 		return true;
-	}
-
-	double randomFn(double metersObstance){
-		Random random = new Random();
-		metersObstance = metersObstance - (metersObstance * 0.25) +
-			(metersObstance * 1.25 - (metersObstance - (metersObstance * 0.25))) * random.nextDouble();
-		return metersObstance;
 	}
 }

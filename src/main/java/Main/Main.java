@@ -14,7 +14,5 @@ public class Main {
 		Bird duck = new Bird("Cracky", "Yellow", dateOfBirthDuck, true);
 		cat.jump(4);
 		duck.swim(4);
-
-
 	}
 }
